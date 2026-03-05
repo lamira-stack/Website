@@ -200,16 +200,21 @@
             <p>&copy; 2026 José Rodrigues Mina</p>
         </footer>
     </div>
-
-    <script>
-        function toggleLanguage() {
-            const body = document.body;
-            if (body.classList.contains('lang-en')) {
-                body.classList.replace('lang-en', 'lang-pt');
-            } else {
-                body.classList.replace('lang-pt', 'lang-en');
-            }
+<script>
+    function toggleLanguage() {
+        const body = document.body;
+        
+        // Verificamos se a classe atual é lang-en ou se não tem classe (default)
+        if (body.classList.contains('lang-en')) {
+            body.classList.remove('lang-en');
+            body.classList.add('lang-pt');
+            console.log("Mudou para PT");
+        } else {
+            body.classList.remove('lang-pt');
+            body.classList.add('lang-en');
+            console.log("Mudou para EN");
         }
-    </script>
+    }
+</script>
 </body>
 </html>
