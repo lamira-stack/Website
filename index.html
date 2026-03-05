@@ -201,18 +201,19 @@
         </footer>
     </div>
 <script>
+    console.log("Script carregado com sucesso!");
+
     function toggleLanguage() {
+        // Isto vai confirmar se o clique está a chegar ao código
+        alert("O botão foi clicado!"); 
+
         const body = document.body;
-        
-        // Verificamos se a classe atual é lang-en ou se não tem classe (default)
         if (body.classList.contains('lang-en')) {
             body.classList.remove('lang-en');
             body.classList.add('lang-pt');
-            console.log("Mudou para PT");
         } else {
             body.classList.remove('lang-pt');
             body.classList.add('lang-en');
-            console.log("Mudou para EN");
         }
     }
 </script>
