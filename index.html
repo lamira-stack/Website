@@ -1,145 +1,801 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>José Rodrigues Mina | AV Systems Engineer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        :root { 
-            --bg-color: #0a0a0a; 
-            --surface-color: #141414; 
-            --text-primary: #ffffff; 
-            --text-secondary: #94a3b8; 
-            --accent-color: #3b82f6; 
-            --border-color: #262626;
-            --card-hover: #1c1c1c;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>José Rodrigues Mina — AV Systems Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #faf8f5;
+      --white: #ffffff;
+      --ink: #1a1a1a;
+      --ink-mid: #3d3d3d;
+      --ink-light: #6b6b6b;
+      --ink-faint: #b0b0b0;
+      --rule: #e2ddd8;
+      --accent: #2b5f8e;
+      --accent-light: #eef3f8;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--bg-color); 
-            color: var(--text-primary); 
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner {
+      max-width: 1080px; margin: 0 auto; padding: 0 2.5rem;
+      height: 62px; display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; color: var(--ink); text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-cta { background: var(--accent) !important; color: white !important; padding: 0.48rem 1.2rem !important; border-radius: 3px; }
+    .nav-right { display: flex; align-items: center; gap: 1.5rem; }
 
-        /* Lógica de Tradução */
-        body.lang-en .pt { display: none !important; }
-        body.lang-pt .en { display: none !important; }
+    /* Language toggle */
+    .lang-toggle {
+      display: flex; align-items: center; gap: 0;
+      border: 1px solid var(--rule); border-radius: 3px; overflow: hidden;
+    }
+    .lang-btn {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.35rem 0.7rem; background: transparent; border: none; cursor: pointer;
+      color: var(--ink-faint); transition: background 0.15s, color 0.15s; font-family: var(--sans);
+    }
+    .lang-btn.active { background: var(--accent); color: white; }
+    .lang-btn:not(.active):hover { color: var(--ink); background: var(--cream); }
 
-        /* Navegação */
-        nav { 
-            position: fixed; top: 0; width: 100%; 
-            background: rgba(10, 10, 10, 0.8); 
-            backdrop-filter: blur(12px); 
-            border-bottom: 1px solid var(--border-color); 
-            z-index: 1000; padding: 15px 40px; 
-            display: flex; justify-content: space-between; align-items: center; 
-        }
-        .nav-links a { 
-            color: var(--text-secondary); text-decoration: none; 
-            margin-right: 30px; font-weight: 500; font-size: 0.85rem; 
-            transition: 0.2s; text-transform: uppercase; letter-spacing: 1px;
-        }
-        .nav-links a:hover, .nav-links a.active { color: var(--accent-color); }
-        
-        .lang-toggle { 
-            background: var(--surface-color); color: var(--accent-color); 
-            border: 1px solid var(--accent-color); padding: 6px 14px; 
-            border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.75rem;
-            transition: 0.3s;
-        }
-        .lang-toggle:hover { background: var(--accent-color); color: white; }
+    /* ── HERO ── */
+    #hero { padding: 130px 2.5rem 90px; background: var(--cream); border-bottom: 1px solid var(--rule); }
+    .hero-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 360px; gap: 5rem; align-items: end; }
+    .hero-eyebrow {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.75rem;
+      opacity: 0; animation: fadeIn 0.7s 0.1s forwards;
+    }
+    .hero-eyebrow::after { content: ''; width: 36px; height: 1px; background: var(--accent); opacity: 0.4; }
+    h1 {
+      font-family: var(--serif); font-size: clamp(2.6rem, 4.5vw, 3.75rem); font-weight: 500;
+      line-height: 1.12; letter-spacing: -0.01em; margin-bottom: 1.5rem;
+      opacity: 0; animation: fadeIn 0.7s 0.25s forwards;
+    }
+    .hero-desc { font-size: 1rem; font-weight: 300; color: var(--ink-mid); max-width: 520px; line-height: 1.75; margin-bottom: 2.25rem; opacity: 0; animation: fadeIn 0.7s 0.4s forwards; }
+    .hero-actions { display: flex; gap: 0.85rem; flex-wrap: wrap; opacity: 0; animation: fadeIn 0.7s 0.55s forwards; }
+    .btn { display: inline-block; font-size: 0.77rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none; padding: 0.8rem 1.7rem; border-radius: 3px; transition: all 0.2s; }
+    .btn-primary { background: var(--accent); color: white; border: 1.5px solid var(--accent); }
+    .btn-primary:hover { background: #1e4a70; border-color: #1e4a70; }
+    .btn-outline { background: transparent; color: var(--ink-mid); border: 1.5px solid var(--rule); }
+    .btn-outline:hover { border-color: var(--ink-mid); color: var(--ink); }
+    .hero-card { background: var(--white); border: 1px solid var(--rule); border-radius: 6px; padding: 1.85rem; opacity: 0; animation: fadeIn 0.7s 0.65s forwards; }
+    .card-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; margin-bottom: 0.25rem; }
+    .card-role { font-size: 0.78rem; color: var(--accent); font-weight: 500; margin-bottom: 1.4rem; padding-bottom: 1.4rem; border-bottom: 1px solid var(--rule); }
+    .card-detail { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.85rem; }
+    .card-detail:last-of-type { margin-bottom: 0; }
+    .detail-icon { width: 28px; height: 28px; background: var(--accent-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; flex-shrink: 0; margin-top: 1px; }
+    .detail-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.09em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.1rem; }
+    .detail-value { font-size: 0.82rem; color: var(--ink-mid); }
+    .avail-badge { display: flex; align-items: center; gap: 0.5rem; margin-top: 1.4rem; padding: 0.55rem 1rem; background: #f0faf4; border: 1px solid #c3e6cb; border-radius: 4px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: #2d7a4a; }
+    .avail-dot { width: 6px; height: 6px; background: #2d7a4a; border-radius: 50%; animation: blink 2.5s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 120px 40px 60px; }
+    /* ── SECTIONS ── */
+    .page-inner { max-width: 1080px; margin: 0 auto; padding: 5rem 2.5rem; }
+    .section-header { margin-bottom: 3rem; }
+    .section-label { font-size: 0.67rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+    .section-title { font-family: var(--serif); font-size: clamp(1.55rem, 2.5vw, 2rem); font-weight: 500; color: var(--ink); }
 
-        header { margin-bottom: 80px; border-left: 3px solid var(--accent-color); padding-left: 30px; }
-        h1 { font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 15px; }
-        
-        /* SUBTÍTULO CORRIGIDO */
-        .title-role { 
-            font-family: 'JetBrains Mono', monospace; color: var(--accent-color); 
-            font-size: 1rem; font-weight: 500; display: block; margin-bottom: 25px; 
-        }
-        
-        .hero-description { font-size: 1.25rem; color: var(--text-secondary); max-width: 700px; font-weight: 300; }
+    /* ── EXPERIENCE ── */
+    #experience { background: var(--white); }
+    .exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 3.5rem; padding: 2.5rem 0; border-bottom: 1px solid var(--rule); opacity: 0; transform: translateY(14px); transition: opacity 0.55s, transform 0.55s; }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-item.visible { opacity: 1; transform: none; }
+    .exp-period { font-size: 0.73rem; font-weight: 500; color: var(--ink-light); margin-bottom: 0.3rem; }
+    .exp-company { font-size: 0.82rem; font-weight: 600; color: var(--ink-mid); margin-bottom: 0.2rem; }
+    .exp-location { font-size: 0.72rem; color: var(--ink-faint); }
+    .exp-role-title { font-family: var(--serif); font-size: 1.12rem; font-weight: 500; color: var(--ink); margin-bottom: 0.3rem; }
+    .exp-tag { display: inline-block; font-size: 0.63rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); background: var(--accent-light); padding: 0.18rem 0.6rem; border-radius: 3px; margin-bottom: 0.85rem; }
+    .exp-bullets { list-style: none; margin-top: 0.85rem; display: flex; flex-direction: column; gap: 0.4rem; }
+    .exp-bullets li { font-size: 0.86rem; color: var(--ink-mid); padding-left: 1.1rem; position: relative; line-height: 1.6; }
+    .exp-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--ink-faint); }
 
-        section { margin-bottom: 80px; }
-        .section-header { 
-            display: flex; align-items: center; margin-bottom: 40px; 
-            gap: 20px; color: var(--text-secondary); font-size: 0.8rem; 
-            text-transform: uppercase; letter-spacing: 3px; 
-        }
-        .section-header::after { content: ""; height: 1px; flex-grow: 1; background: var(--border-color); }
+    /* ── EVENTS ── */
+    #events { background: var(--cream); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .events-filter { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+    .filter-btn {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.45rem 1rem; border-radius: 3px; border: 1px solid var(--rule);
+      background: var(--white); color: var(--ink-light); cursor: pointer; font-family: var(--sans);
+      transition: all 0.15s;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .filter-btn.active { background: var(--accent); border-color: var(--accent); color: white; }
+    .events-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1rem; }
+    .event-card {
+      background: var(--white); border: 1px solid var(--rule); border-radius: 5px;
+      padding: 1.4rem 1.5rem; opacity: 0; transform: translateY(12px);
+      transition: opacity 0.45s, transform 0.45s, border-color 0.2s;
+    }
+    .event-card.visible { opacity: 1; transform: none; }
+    .event-card:hover { border-color: #c8d9e8; }
+    .event-card[data-hidden="true"] { display: none; }
+    .event-cat {
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.18rem 0.55rem; border-radius: 3px; display: inline-block; margin-bottom: 0.65rem;
+    }
+    .cat-broadcast { color: #1e5c8a; background: #ddeef8; }
+    .cat-corporate { color: #2d6a4f; background: #d8f0e4; }
+    .cat-exhibition { color: #7b4f12; background: #fdecd0; }
+    .event-name { font-size: 0.9rem; font-weight: 600; color: var(--ink); line-height: 1.4; margin-bottom: 0.35rem; }
+    .event-meta { font-size: 0.75rem; color: var(--ink-light); }
+    .event-meta strong { color: var(--ink-mid); font-weight: 500; }
 
-        /* Experiência */
-        .exp-card { 
-            background: var(--surface-color); padding: 40px; 
-            border-radius: 12px; border: 1px solid var(--border-color);
-            transition: 0.3s ease; margin-bottom: 20px;
-        }
-        .exp-card:hover { border-color: #404040; background: var(--card-hover); }
-        .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
-        .exp-title h3 { font-size: 1.4rem; color: #fff; }
-        .exp-title p { color: var(--accent-color); font-weight: 600; font-size: 0.9rem; }
-        .exp-date { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); }
-        
-        .bullets { list-style: none; margin-top: 20px; }
-        .bullets li { 
-            color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 12px; 
-            padding-left: 20px; position: relative; 
-        }
-        .bullets li::before { content: "→"; position: absolute; left: 0; color: var(--accent-color); }
+    /* ── SKILLS ── */
+    #skills { background: var(--white); border-top: 1px solid var(--rule); }
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .skill-group { padding: 1.75rem 2rem 1.75rem 0; border-bottom: 1px solid var(--rule); opacity: 0; transform: translateY(12px); transition: opacity 0.5s, transform 0.5s; }
+    .skill-group:nth-child(even) { padding-left: 2rem; padding-right: 0; border-left: 1px solid var(--rule); }
+    .skill-group:nth-last-child(-n+2) { border-bottom: none; }
+    .skill-group.visible { opacity: 1; transform: none; }
+    .sg-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+    .sg-title { font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-bottom: 0.75rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .chip { font-size: 0.7rem; color: var(--ink-mid); background: var(--cream); border: 1px solid var(--rule); padding: 0.24rem 0.65rem; border-radius: 3px; }
 
-        /* COMPETÊNCIAS - NOVO DESIGN */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .skill-item { 
-            background: var(--surface-color); padding: 30px; 
-            border-radius: 12px; border: 1px solid var(--border-color);
-            display: flex; flex-direction: column; gap: 15px;
-        }
-        .skill-item h4 { 
-            font-size: 0.85rem; color: var(--accent-color); 
-            text-transform: uppercase; letter-spacing: 1px;
-            border-bottom: 1px solid #262626; padding-bottom: 10px;
-        }
-        .skill-list { list-style: none; }
-        .skill-list li { font-size: 0.95rem; color: var(--text-primary); margin-bottom: 8px; display: flex; justify-content: space-between; }
-        .skill-list li span { color: var(--text-secondary); font-size: 0.8rem; }
+    /* ── ACHIEVEMENTS ── */
+    #achievements { background: var(--cream); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .ach-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .ach-card { border: 1px solid var(--rule); border-radius: 5px; padding: 1.65rem; background: var(--white); opacity: 0; transform: translateY(12px); transition: opacity 0.5s, transform 0.5s; }
+    .ach-card.visible { opacity: 1; transform: none; }
+    .ach-num { font-family: var(--serif); font-size: 1.7rem; font-weight: 400; color: var(--rule); line-height: 1; margin-bottom: 0.9rem; }
+    .ach-title { font-size: 0.875rem; font-weight: 600; color: var(--ink); margin-bottom: 0.45rem; line-height: 1.4; }
+    .ach-desc { font-size: 0.8rem; color: var(--ink-light); line-height: 1.65; }
 
-        /* Galeria CTA */
-        .gallery-cta { 
-            background: linear-gradient(90deg, #1d4ed8 0%, #1e40af 100%); 
-            padding: 50px; border-radius: 12px; text-align: center; margin-top: 40px;
-        }
-        .btn-white { 
-            display: inline-block; background: #fff; color: #000; 
-            padding: 14px 30px; border-radius: 6px; text-decoration: none; 
-            font-weight: 700; transition: 0.3s; margin-top: 20px;
-        }
-        .btn-white:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+    /* ── EDUCATION ── */
+    #education { background: var(--white); }
+    .edu-item { display: grid; grid-template-columns: 200px 1fr; gap: 3.5rem; padding: 2.25rem 0; border-bottom: 1px solid var(--rule); opacity: 0; transform: translateY(12px); transition: opacity 0.5s, transform 0.5s; }
+    .edu-item:last-child { border-bottom: none; }
+    .edu-item.visible { opacity: 1; transform: none; }
+    .edu-years { font-size: 0.73rem; font-weight: 500; color: var(--ink-light); padding-top: 4px; }
+    .edu-inst { font-size: 0.72rem; color: var(--ink-faint); margin-top: 0.2rem; }
+    .edu-degree { font-family: var(--serif); font-size: 1.05rem; font-weight: 500; color: var(--ink); margin-bottom: 0.3rem; }
+    .edu-school { font-size: 0.8rem; font-weight: 500; color: var(--accent); margin-bottom: 0.35rem; }
+    .edu-desc { font-size: 0.8rem; color: var(--ink-light); }
 
-        footer { text-align: center; padding: 60px; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.8rem; }
-    </style>
+    /* ── CONTACT ── */
+    #contact { background: var(--ink); color: var(--white); }
+    .contact-inner { max-width: 1080px; margin: 0 auto; padding: 5rem 2.5rem; display: grid; grid-template-columns: 1fr 380px; gap: 5rem; align-items: start; }
+    .contact-headline { font-family: var(--serif); font-size: clamp(1.9rem, 3.5vw, 2.75rem); font-weight: 400; line-height: 1.15; margin-bottom: 1.1rem; }
+    .contact-sub { font-size: 0.88rem; color: #9ca3af; line-height: 1.7; max-width: 360px; margin-bottom: 2.5rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.65rem; }
+    .contact-link { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: #d1d5db; font-size: 0.83rem; padding: 0.85rem 1.1rem; border: 1px solid #2d2d2d; border-radius: 4px; transition: border-color 0.2s, color 0.2s; }
+    .contact-link:hover { border-color: #4b5563; color: white; }
+    .cl-icon { width: 28px; height: 28px; background: #2a2a2a; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; flex-shrink: 0; }
+    .form-label { display: block; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #6b7280; margin-bottom: 0.38rem; }
+    .form-row { margin-bottom: 0.95rem; }
+    .form-input, .form-textarea { width: 100%; background: #111; border: 1px solid #2d2d2d; color: white; font-family: var(--sans); font-size: 0.875rem; padding: 0.72rem 1rem; border-radius: 4px; outline: none; transition: border-color 0.2s; resize: vertical; }
+    .form-input::placeholder, .form-textarea::placeholder { color: #4b5563; }
+    .form-input:focus, .form-textarea:focus { border-color: #4b78a0; }
+    .form-textarea { min-height: 108px; }
+    .form-btn { width: 100%; background: var(--accent); color: white; border: none; font-family: var(--sans); font-size: 0.77rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.88rem; border-radius: 4px; cursor: pointer; margin-top: 0.25rem; transition: background 0.2s; }
+    .form-btn:hover { background: #1e4a70; }
+
+    /* ── FOOTER ── */
+    footer { background: #111; border-top: 1px solid #222; padding: 1.5rem 2.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-text { font-size: 0.7rem; color: #4b5563; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .nav-links { display: none; }
+      .hero-inner, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .hero-card { display: none; }
+      .exp-item, .edu-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .skill-group:nth-child(even) { border-left: none; padding-left: 0; }
+      .skill-group:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
+      .skill-group:last-child { border-bottom: none; }
+      .ach-grid { grid-template-columns: 1fr; }
+      .page-inner { padding: 3.5rem 1.5rem; }
+      #hero { padding: 110px 1.5rem 60px; }
+      footer { flex-direction: column; gap: 0.4rem; }
+      .events-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-<body class="lang-pt">
+<body>
 
-    <nav>
-        <div class="nav-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="eventos.html" class="en">Portfolio</a>
-            <a href="eventos.html" class="pt">Portefólio</a>
+  <nav>
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">José Rodrigues Mina</a>
+      <ul class="nav-links">
+        <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+        <li><a href="#events" data-i18n="nav.events">Events</a></li>
+        <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="#education" data-i18n="nav.education">Education</a></li>
+        <li><a href="#contact" class="nav-cta" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang-toggle">
+          <button class="lang-btn active" onclick="setLang('en')">EN</button>
+          <button class="lang-btn" onclick="setLang('pt')">PT</button>
         </div>
-        <button class="lang-toggle" onclick="toggleLanguage()">PT / EN</button>
-    </nav>
+      </div>
+    </div>
+  </nav>
 
-    <div class="container">
-        <header>
-            <span class="title-role en">AV Systems Engineer // Team Lead</span>
-            <span class="title-role pt">Engenheiro de Sistemas AV // Team Lead</span>
-            
-            <h1>José Rodrigues Mina</h1>
-            <p class="hero-description en">Specialized in mission-critical AV infrastructure, AoIP network design, and live broadcast synchronization.</p>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow" data-i18n="hero.eyebrow">AV Systems Engineer &amp; Team Lead</div>
+        <h1 data-i18n="hero.h1">Delivering reliable<br/>AV infrastructure<br/>at every scale.</h1>
+        <p class="hero-desc" data-i18n="hero.desc">10+ years of hands-on experience in broadcast systems, live event production, and AV networking. Expert in Dante, BLU-Link, and mission-critical infrastructure for global audiences. Based in Lisbon, Portugal.</p>
+        <div class="hero-actions">
+          <a href="#experience" class="btn btn-primary" data-i18n="hero.cta1">View Experience</a>
+          <a href="mailto:rodriguesminajose@gmail.com" class="btn btn-outline" data-i18n="hero.cta2">Get in Touch</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="card-name">José Rodrigues Mina</div>
+        <div class="card-role" data-i18n="card.role">AV Team Lead · Shrine of Fatima</div>
+        <div class="card-detail">
+          <div class="detail-icon">📍</div>
+          <div><div class="detail-label" data-i18n="card.location">Location</div><div class="detail-value">Lisbon, Portugal</div></div>
+        </div>
+        <div class="card-detail">
+          <div class="detail-icon">🎓</div>
+          <div><div class="detail-label" data-i18n="card.education">Education</div><div class="detail-value">Postgraduate, ESCS Lisboa</div></div>
+        </div>
+        <div class="card-detail">
+          <div class="detail-icon">✉</div>
+          <div><div class="detail-label" data-i18n="card.email">Email</div><div class="detail-value">rodriguesminajose@gmail.com</div></div>
+        </div>
+        <div class="card-detail">
+          <div class="detail-icon">🌐</div>
+          <div><div class="detail-label" data-i18n="card.website">Website</div><div class="detail-value">joserodriguesmina.com</div></div>
+        </div>
+        <div class="avail-badge"><div class="avail-dot"></div><span data-i18n="card.avail">Open to opportunities</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="page-inner">
+      <div class="section-header">
+        <div class="section-label" data-i18n="exp.label">Career</div>
+        <div class="section-title" data-i18n="exp.title">Work Experience</div>
+      </div>
+      <div>
+        <div class="exp-item">
+          <div>
+            <div class="exp-period" data-i18n="exp1.period">Jun 2025 — Present</div>
+            <div class="exp-company" data-i18n="exp1.company">Shrine of Fatima</div>
+            <div class="exp-location">Fátima, Portugal</div>
+          </div>
+          <div>
+            <span class="exp-tag" data-i18n="exp1.tag">Current</span>
+            <div class="exp-role-title" data-i18n="exp1.role">AV Team Lead</div>
+            <ul class="exp-bullets">
+              <li data-i18n="exp1.b1">Lead technical team overseeing audio, video, and multimedia operations for world-scale live events and broadcasts</li>
+              <li data-i18n="exp1.b2">Manage technical workflows, team scheduling, and critical infrastructure availability during high-pressure live productions</li>
+              <li data-i18n="exp1.b3">Oversee AV asset maintenance and full lifecycle management across the venue</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div>
+            <div class="exp-period">Jul 2019 — Jun 2025</div>
+            <div class="exp-company" data-i18n="exp1.company">Shrine of Fatima</div>
+            <div class="exp-location">Fátima, Portugal</div>
+          </div>
+          <div>
+            <div class="exp-role-title" data-i18n="exp2.role">AV &amp; Multimedia Technician</div>
+            <ul class="exp-bullets">
+              <li data-i18n="exp2.b1">Configured and maintained complex AV networks using Dante and BLU-Link protocols over Fiber Optics</li>
+              <li data-i18n="exp2.b2">Operated audio and video mixing for television services, webstreaming, and auxiliary video returns</li>
+              <li data-i18n="exp2.b3">Produced promotional audiovisual content for social media and managed the organisation's media archive</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div>
+            <div class="exp-period">Jul 2018 — Jul 2019</div>
+            <div class="exp-company">A Bola TV</div>
+            <div class="exp-location">Lisbon, Portugal</div>
+          </div>
+          <div>
+            <div class="exp-role-title" data-i18n="exp3.role">Broadcast Technician</div>
+            <ul class="exp-bullets">
+              <li data-i18n="exp3.b1">Supervised television systems ensuring 24/7 signal stability and rapid troubleshooting</li>
+              <li data-i18n="exp3.b2">Integrated audio, video, and lighting workflows in professional broadcast studio environments</li>
+              <li data-i18n="exp3.b3">Delivered technical training to teams on the correct operation of broadcast equipment</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div>
+            <div class="exp-period">Mar 2015 — Jul 2018</div>
+            <div class="exp-company">Calouste Gulbenkian Foundation</div>
+            <div class="exp-location">Lisbon, Portugal</div>
+          </div>
+          <div>
+            <div class="exp-role-title" data-i18n="exp4.role">Audio Technician</div>
+            <ul class="exp-bullets">
+              <li data-i18n="exp4.b1">Managed acoustic reinforcement for the Gulbenkian Orchestra and international performers, ensuring premium audio quality</li>
+              <li data-i18n="exp4.b2">Provided live technical support for high-profile international conferences including webstreaming and multi-camera setups</li>
+              <li data-i18n="exp4.b3">Produced and post-processed audiovisual recordings for institutional archives and promotional media</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS -->
+  <section id="events">
+    <div class="page-inner">
+      <div class="section-header">
+        <div class="section-label" data-i18n="events.label">Portfolio</div>
+        <div class="section-title" data-i18n="events.title">Notable Events</div>
+      </div>
+      <div class="events-filter">
+        <button class="filter-btn active" data-filter="all" onclick="filterEvents('all')" data-i18n="filter.all">All</button>
+        <button class="filter-btn" data-filter="broadcast" onclick="filterEvents('broadcast')" data-i18n="filter.broadcast">Broadcast &amp; Live Events</button>
+        <button class="filter-btn" data-filter="corporate" onclick="filterEvents('corporate')" data-i18n="filter.corporate">Corporate &amp; Conferences</button>
+        <button class="filter-btn" data-filter="exhibition" onclick="filterEvents('exhibition')" data-i18n="filter.exhibition">Exhibitions</button>
+      </div>
+      <div class="events-grid">
+
+        <!-- BROADCAST & LIVE EVENTS -->
+        <div class="event-card" data-category="broadcast">
+          <span class="event-cat cat-broadcast" data-i18n="cat.broadcast">Broadcast &amp; Live Events</span>
+          <div class="event-name">Jornada Mundial da Juventude</div>
+          <div class="event-meta"><strong>Santuário de Fátima</strong> · 2023</div>
+        </div>
+        <div class="event-card" data-category="broadcast">
+          <span class="event-cat cat-broadcast" data-i18n="cat.broadcast">Broadcast &amp; Live Events</span>
+          <div class="event-name">Peregrinações Internacionais Aniversárias</div>
+          <div class="event-meta"><strong>Santuário de Fátima</strong> · 2022</div>
+        </div>
+        <div class="event-card" data-category="broadcast">
+          <span class="event-cat cat-broadcast" data-i18n="cat.broadcast">Broadcast &amp; Live Events</span>
+          <div class="event-name">Encontros na Basílica</div>
+          <div class="event-meta"><strong>Santuário de Fátima</strong> · 2022</div>
+        </div>
+        <div class="event-card" data-category="broadcast">
+          <span class="event-cat cat-broadcast" data-i18n="cat.broadcast">Broadcast &amp; Live Events</span>
+          <div class="event-name">Concerto de Páscoa: Totus tuus</div>
+          <div class="event-meta"><strong>Santuário de Fátima</strong> · 2022</div>
+        </div>
+        <div class="event-card" data-category="broadcast">
+          <span class="event-cat cat-broadcast" data-i18n="cat.broadcast">Broadcast &amp; Live Events</span>
+          <div class="event-name">Peregrinações Internacionais Aniversárias</div>
+          <div class="event-meta"><strong>Santuário de Fátima</strong> · 2021</div>
+        </div>
+        <div class="event-card" data-category="broadcast">
+          <span class="event-cat cat-broadcast" data-i18n="cat.broadcast">Broadcast &amp; Live Events</span>
+          <div class="event-name">Jazz em Agosto</div>
+          <div class="event-meta"><strong>Fundação Calouste Gulbenkian</strong> · 2016 &amp; 2017</div>
+        </div>
+        <div class="event-card" data-category="broadcast">
+          <span class="event-cat cat-broadcast" data-i18n="cat.broadcast">Broadcast &amp; Live Events</span>
+          <div class="event-name">Jardim de Verão</div>
+          <div class="event-meta"><strong>Fundação Calouste Gulbenkian</strong> · 2016 &amp; 2017</div>
+        </div>
+        <div class="event-card" data-category="broadcast">
+          <span class="event-cat cat-broadcast" data-i18n="cat.broadcast">Broadcast &amp; Live Events</span>
+          <div class="event-name">Centenário da I Grande Guerra</div>
+          <div class="event-meta"><strong>Fundação Calouste Gulbenkian</strong> · 2017</div>
+        </div>
+        <div class="event-card" data-category="broadcast">
+          <span class="event-cat cat-broadcast" data-i18n="cat.broadcast">Broadcast &amp; Live Events</span>
+          <div class="event-name">Íntimo — Miguel Poveda</div>
+          <div class="event-meta"><strong>Fundação Calouste Gulbenkian</strong> · 2017</div>
+        </div>
+        <div class="event-card" data-category="broadcast">
+          <span class="event-cat cat-broadcast" data-i18n="cat.broadcast">Broadcast &amp; Live Events</span>
+          <div class="event-name">O Monstro do Labirinto</div>
+          <div class="event-meta"><strong>Fundação Calouste Gulbenkian</strong> · 2017</div>
+        </div>
+        <div class="event-card" data-category="broadcast">
+          <span class="event-cat cat-broadcast" data-i18n="cat.broadcast">Broadcast &amp; Live Events</span>
+          <div class="event-name">Galáxia Tabucci</div>
+          <div class="event-meta"><strong>Fundação Calouste Gulbenkian</strong> · 2018</div>
+        </div>
+
+        <!-- CORPORATE & CONFERENCES -->
+        <div class="event-card" data-category="corporate">
+          <span class="event-cat cat-corporate" data-i18n="cat.corporate">Corporate &amp; Conferences</span>
+          <div class="event-name">III Jornadas da Comunicação</div>
+          <div class="event-meta"><strong>Santuário de Fátima</strong> · 2022</div>
+        </div>
+        <div class="event-card" data-category="corporate">
+          <span class="event-cat cat-corporate" data-i18n="cat.corporate">Corporate &amp; Conferences</span>
+          <div class="event-name">II Jornadas do Arquivo</div>
+          <div class="event-meta"><strong>Santuário de Fátima</strong> · 2020</div>
+        </div>
+        <div class="event-card" data-category="corporate">
+          <span class="event-cat cat-corporate" data-i18n="cat.corporate">Corporate &amp; Conferences</span>
+          <div class="event-name">VIII Workshop Internacional de Turismo Religioso</div>
+          <div class="event-meta"><strong>Santuário de Fátima</strong> · 2020</div>
+        </div>
+        <div class="event-card" data-category="corporate">
+          <span class="event-cat cat-corporate" data-i18n="cat.corporate">Corporate &amp; Conferences</span>
+          <div class="event-name">European Commission — Opening up to an ERA of Social Innovation</div>
+          <div class="event-meta"><strong>Fundação Calouste Gulbenkian</strong> · 2017</div>
+        </div>
+        <div class="event-card" data-category="corporate">
+          <span class="event-cat cat-corporate" data-i18n="cat.corporate">Corporate &amp; Conferences</span>
+          <div class="event-name">Cardiovascular and Interventional Radiology Society of Europe (CIRSE)</div>
+          <div class="event-meta"><strong>Fundação Calouste Gulbenkian</strong> · 2018</div>
+        </div>
+        <div class="event-card" data-category="corporate">
+          <span class="event-cat cat-corporate" data-i18n="cat.corporate">Corporate &amp; Conferences</span>
+          <div class="event-name">Docomomo — Adaptive Reuse: The Modern Movement Towards the Future</div>
+          <div class="event-meta"><strong>Fundação Calouste Gulbenkian</strong> · 2016</div>
+        </div>
+        <div class="event-card" data-category="corporate">
+          <span class="event-cat cat-corporate" data-i18n="cat.corporate">Corporate &amp; Conferences</span>
+          <div class="event-name">Os Estados Unidos e Portugal: Uma Parceria para a Prosperidade</div>
+          <div class="event-meta"><strong>Fundação Calouste Gulbenkian</strong> · 2018</div>
+        </div>
+        <div class="event-card" data-category="corporate">
+          <span class="event-cat cat-corporate" data-i18n="cat.corporate">Corporate &amp; Conferences</span>
+          <div class="event-name">2.ª Conferência de Lisboa — As Dinâmicas Globais do Desenvolvimento</div>
+          <div class="event-meta"><strong>Fundação Calouste Gulbenkian</strong> · 2016</div>
+        </div>
+        <div class="event-card" data-category="corporate">
+          <span class="event-cat cat-corporate" data-i18n="cat.corporate">Corporate &amp; Conferences</span>
+          <div class="event-name">3.ª Conferência de Lisboa — Desenvolvimento em Tempos de Incerteza</div>
+          <div class="event-meta"><strong>Fundação Calouste Gulbenkian</strong> · 2018</div>
+        </div>
+
+        <!-- EXHIBITIONS -->
+        <div class="event-card" data-category="exhibition">
+          <span class="event-cat cat-exhibition" data-i18n="cat.exhibition">Exhibitions</span>
+          <div class="event-name">Os Rostos de Fátima: Fisionomias de uma Paisagem Espiritual</div>
+          <div class="event-meta"><strong>Santuário de Fátima</strong> · 2020</div>
+        </div>
+        <div class="event-card" data-category="exhibition">
+          <span class="event-cat cat-exhibition" data-i18n="cat.exhibition">Exhibitions</span>
+          <div class="event-name">Vestida de Branco</div>
+          <div class="event-meta"><strong>Santuário de Fátima</strong> · 2019</div>
+        </div>
+        <div class="event-card" data-category="exhibition">
+          <span class="event-cat cat-exhibition" data-i18n="cat.exhibition">Exhibitions</span>
+          <div class="event-name">José de Almada Negreiros — Uma Maneira de Ser Moderno</div>
+          <div class="event-meta"><strong>Museu Calouste Gulbenkian</strong> · 2017</div>
+        </div>
+        <div class="event-card" data-category="exhibition">
+          <span class="event-cat cat-exhibition" data-i18n="cat.exhibition">Exhibitions</span>
+          <div class="event-name">Do Outro Lado do Espelho</div>
+          <div class="event-meta"><strong>Museu Calouste Gulbenkian</strong> · 2018</div>
+        </div>
+        <div class="event-card" data-category="exhibition">
+          <span class="event-cat cat-exhibition" data-i18n="cat.exhibition">Exhibitions</span>
+          <div class="event-name">Pós-Pop. Fora do Lugar Comum</div>
+          <div class="event-meta"><strong>Museu Calouste Gulbenkian</strong> · 2018</div>
+        </div>
+        <div class="event-card" data-category="exhibition">
+          <span class="event-cat cat-exhibition" data-i18n="cat.exhibition">Exhibitions</span>
+          <div class="event-name">António Ole. Luanda, Los Angeles, Lisboa</div>
+          <div class="event-meta"><strong>Museu Calouste Gulbenkian</strong> · 2017</div>
+        </div>
+        <div class="event-card" data-category="exhibition">
+          <span class="event-cat cat-exhibition" data-i18n="cat.exhibition">Exhibitions</span>
+          <div class="event-name">Willie Doherty. Uma e Outra Vez</div>
+          <div class="event-meta"><strong>Museu Calouste Gulbenkian</strong> · 2016</div>
+        </div>
+        <div class="event-card" data-category="exhibition">
+          <span class="event-cat cat-exhibition" data-i18n="cat.exhibition">Exhibitions</span>
+          <div class="event-name">José Escada Retrospetiva — Eu Não Evoluo, Viajo</div>
+          <div class="event-meta"><strong>Museu Calouste Gulbenkian</strong> · 2016</div>
+        </div>
+        <div class="event-card" data-category="exhibition">
+          <span class="event-cat cat-exhibition" data-i18n="cat.exhibition">Exhibitions</span>
+          <div class="event-name">Mariana Silva. Olho Zoomórfico</div>
+          <div class="event-meta"><strong>Espaço Projecto, CAM — Gulbenkian</strong> · 2018</div>
+        </div>
+        <div class="event-card" data-category="exhibition">
+          <span class="event-cat cat-exhibition" data-i18n="cat.exhibition">Exhibitions</span>
+          <div class="event-name">A Forma Chã</div>
+          <div class="event-meta"><strong>Museu Calouste Gulbenkian</strong> · 2017</div>
+        </div>
+        <div class="event-card" data-category="exhibition">
+          <span class="event-cat cat-exhibition" data-i18n="cat.exhibition">Exhibitions</span>
+          <div class="event-name">Aimée Zito Lema. 13 Shots</div>
+          <div class="event-meta"><strong>Espaço Projecto, CAM — Gulbenkian</strong> · 2018</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="page-inner">
+      <div class="section-header">
+        <div class="section-label" data-i18n="skills.label">Expertise</div>
+        <div class="section-title" data-i18n="skills.title">Technical Skills</div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group"><div class="sg-label" data-i18n="sk1.label">Networking</div><div class="sg-title" data-i18n="sk1.title">AV Networking &amp; Infrastructure</div><div class="chips"><span class="chip">Dante</span><span class="chip">BLU-Link</span><span class="chip">AV-over-IP</span><span class="chip">Fiber Optics</span><span class="chip">NDI</span><span class="chip">SDI</span><span class="chip">Signal Flow Architecture</span></div></div>
+        <div class="skill-group"><div class="sg-label" data-i18n="sk2.label">Hardware</div><div class="sg-title" data-i18n="sk2.title">Broadcast Systems &amp; Hardware</div><div class="chips"><span class="chip">Yamaha QL/CL Series</span><span class="chip">Blackmagic ATEM</span><span class="chip">Evertz</span><span class="chip">VistaLINK</span><span class="chip">AMX</span><span class="chip">Digital Audio Consoles</span></div></div>
+        <div class="skill-group"><div class="sg-label" data-i18n="sk3.label">Enterprise Tools</div><div class="sg-title" data-i18n="sk3.title">Collaboration &amp; Enterprise</div><div class="chips"><span class="chip">Zoom Webinar / Events</span><span class="chip">Zoom Rooms</span><span class="chip">Microsoft Teams</span><span class="chip">Microsoft 365</span><span class="chip">Technical Documentation</span></div></div>
+        <div class="skill-group"><div class="sg-label" data-i18n="sk4.label">Post-Production</div><div class="sg-title" data-i18n="sk4.title">Media Engineering</div><div class="chips"><span class="chip">REAPER</span><span class="chip">DaVinci Resolve</span><span class="chip">Sound Design</span><span class="chip">FFmpeg</span></div></div>
+        <div class="skill-group"><div class="sg-label" data-i18n="sk5.label">IT &amp; Automation</div><div class="sg-title" data-i18n="sk5.title">IT &amp; Automation</div><div class="chips"><span class="chip">Python Scripting</span><span class="chip">Linux</span><span class="chip">Raspberry Pi</span><span class="chip">Microcomputers</span></div></div>
+        <div class="skill-group"><div class="sg-label" data-i18n="sk6.label">Leadership</div><div class="sg-title" data-i18n="sk6.title">Management &amp; Leadership</div><div class="chips"><span class="chip">Technical Team Leadership</span><span class="chip">Project Management</span><span class="chip">Mission-Critical Ops</span><span class="chip">Stakeholder Communication</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="page-inner">
+      <div class="section-header">
+        <div class="section-label" data-i18n="ach.label">Track Record</div>
+        <div class="section-title" data-i18n="ach.title">Key Achievements</div>
+      </div>
+      <div class="ach-grid">
+        <div class="ach-card"><div class="ach-num">01</div><div class="ach-title" data-i18n="ach1.title">Fast-Track Promotion to AV Team Lead</div><p class="ach-desc" data-i18n="ach1.desc">Promoted to lead the technical department in recognition of consistent performance and expertise managing mission-critical AV infrastructure. Overseeing workflows and team coordination for large-capacity venues.</p></div>
+        <div class="ach-card"><div class="ach-num">02</div><div class="ach-title" data-i18n="ach2.title">World-Scale Broadcast Operations — 2023</div><p class="ach-desc" data-i18n="ach2.desc">Critical role in AV infrastructure for a global event with dozens of international media networks. Managed complex signal routing and ensured 100% broadcast uptime under extreme pressure.</p></div>
+        <div class="ach-card"><div class="ach-num">03</div><div class="ach-title" data-i18n="ach3.title">6 Years of Mission-Critical Reliability</div><p class="ach-desc" data-i18n="ach3.desc">Maintained high-availability broadcast systems at Shrine of Fatima, supporting television services and webstreaming to global audiences with no critical failures during live productions.</p></div>
+        <div class="ach-card"><div class="ach-num">04</div><div class="ach-title" data-i18n="ach4.title">Gulbenkian Orchestra — Premium Production</div><p class="ach-desc" data-i18n="ach4.desc">3+ years of acoustic reinforcement and live production for the Gulbenkian Orchestra and international performers, including multi-camera and webstreaming setups for high-profile international conferences.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="page-inner">
+      <div class="section-header">
+        <div class="section-label" data-i18n="edu.label">Academic Background</div>
+        <div class="section-title" data-i18n="edu.title">Education</div>
+      </div>
+      <div>
+        <div class="edu-item">
+          <div><div class="edu-years">2018 — 2019</div><div class="edu-inst">Instituto Politécnico de Lisboa</div></div>
+          <div><div class="edu-degree" data-i18n="edu1.degree">Postgraduate Degree in Audiovisual &amp; Multimedia Communication</div><div class="edu-school">ESCS — Escola Superior de Comunicação Social</div><div class="edu-desc" data-i18n="edu1.desc">AV Project Management, Television Systems, and Visual Cultures.</div></div>
+        </div>
+        <div class="edu-item">
+          <div><div class="edu-years">2012 — 2015</div><div class="edu-inst">Instituto Politécnico de Leiria</div></div>
+          <div><div class="edu-degree" data-i18n="edu2.degree">Bachelor's Degree in Sound and Image</div><div class="edu-school">ESAD.CR — Escola Superior de Artes e Design</div><div class="edu-desc" data-i18n="edu2.desc">Audio and Video Technologies, Digital Labs.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div>
+        <h2 class="contact-headline" data-i18n="contact.headline">Let's work<br/>together.</h2>
+        <p class="contact-sub" data-i18n="contact.sub">Available for AV engineering roles, system design, and broadcast infrastructure projects. Based in Lisbon, open to hybrid opportunities.</p>
+        <div class="contact-links">
+          <a href="mailto:rodriguesminajose@gmail.com" class="contact-link"><div class="cl-icon">✉</div>rodriguesminajose@gmail.com</a>
+          <a href="tel:+351969725793" class="contact-link"><div class="cl-icon">✆</div>+351 969 725 793</a>
+          <a href="https://joserodriguesmina.com" target="_blank" class="contact-link"><div class="cl-icon">◎</div>joserodriguesmina.com</a>
+        </div>
+      </div>
+      <div>
+        <div class="form-row"><label class="form-label" data-i18n="form.name">Your Name</label><input type="text" class="form-input" data-i18n-placeholder="form.nameph" placeholder="e.g. Ana Silva" /></div>
+        <div class="form-row"><label class="form-label" data-i18n="form.email">Your Email</label><input type="email" class="form-input" placeholder="you@company.com" /></div>
+        <div class="form-row"><label class="form-label" data-i18n="form.msg">Message</label><textarea class="form-textarea" data-i18n-placeholder="form.msgph" placeholder="Tell me about the role or project..."></textarea></div>
+        <button class="form-btn" onclick="handleSubmit(this)" data-i18n="form.btn">Send Message</button>
+        <p id="form-msg" style="font-size:0.73rem;color:#6ee7b7;margin-top:0.7rem;display:none;" data-i18n="form.sent">Message sent — I'll be in touch shortly.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-text">© 2025 José Rodrigues Mina</span>
+    <span class="footer-text">Lisbon, Portugal</span>
+  </footer>
+
+  <script>
+    // ── TRANSLATIONS ──
+    const i18n = {
+      en: {
+        'nav.experience': 'Experience', 'nav.events': 'Events', 'nav.skills': 'Skills',
+        'nav.education': 'Education', 'nav.contact': 'Contact',
+        'hero.eyebrow': 'AV Systems Engineer & Team Lead',
+        'hero.h1': 'Delivering reliable<br/>AV infrastructure<br/>at every scale.',
+        'hero.desc': '10+ years of hands-on experience in broadcast systems, live event production, and AV networking. Expert in Dante, BLU-Link, and mission-critical infrastructure for global audiences. Based in Lisbon, Portugal.',
+        'hero.cta1': 'View Experience', 'hero.cta2': 'Get in Touch',
+        'card.role': 'AV Team Lead · Shrine of Fatima', 'card.location': 'Location',
+        'card.education': 'Education', 'card.email': 'Email', 'card.website': 'Website',
+        'card.avail': 'Open to opportunities',
+        'exp.label': 'Career', 'exp.title': 'Work Experience',
+        'exp1.period': 'Jun 2025 — Present', 'exp1.company': 'Shrine of Fatima',
+        'exp1.tag': 'Current', 'exp1.role': 'AV Team Lead',
+        'exp1.b1': 'Lead technical team overseeing audio, video, and multimedia operations for world-scale live events and broadcasts',
+        'exp1.b2': 'Manage technical workflows, team scheduling, and critical infrastructure availability during high-pressure live productions',
+        'exp1.b3': 'Oversee AV asset maintenance and full lifecycle management across the venue',
+        'exp2.role': 'AV & Multimedia Technician',
+        'exp2.b1': 'Configured and maintained complex AV networks using Dante and BLU-Link protocols over Fiber Optics',
+        'exp2.b2': 'Operated audio and video mixing for television services, webstreaming, and auxiliary video returns',
+        'exp2.b3': "Produced promotional audiovisual content for social media and managed the organisation's media archive",
+        'exp3.role': 'Broadcast Technician',
+        'exp3.b1': 'Supervised television systems ensuring 24/7 signal stability and rapid troubleshooting',
+        'exp3.b2': 'Integrated audio, video, and lighting workflows in professional broadcast studio environments',
+        'exp3.b3': 'Delivered technical training to teams on the correct operation of broadcast equipment',
+        'exp4.role': 'Audio Technician',
+        'exp4.b1': 'Managed acoustic reinforcement for the Gulbenkian Orchestra and international performers, ensuring premium audio quality',
+        'exp4.b2': 'Provided live technical support for high-profile international conferences including webstreaming and multi-camera setups',
+        'exp4.b3': 'Produced and post-processed audiovisual recordings for institutional archives and promotional media',
+        'events.label': 'Portfolio', 'events.title': 'Notable Events',
+        'filter.all': 'All', 'filter.broadcast': 'Broadcast & Live Events',
+        'filter.corporate': 'Corporate & Conferences', 'filter.exhibition': 'Exhibitions',
+        'cat.broadcast': 'Broadcast & Live Events', 'cat.corporate': 'Corporate & Conferences',
+        'cat.exhibition': 'Exhibitions',
+        'skills.label': 'Expertise', 'skills.title': 'Technical Skills',
+        'sk1.label': 'Networking', 'sk1.title': 'AV Networking & Infrastructure',
+        'sk2.label': 'Hardware', 'sk2.title': 'Broadcast Systems & Hardware',
+        'sk3.label': 'Enterprise Tools', 'sk3.title': 'Collaboration & Enterprise',
+        'sk4.label': 'Post-Production', 'sk4.title': 'Media Engineering',
+        'sk5.label': 'IT & Automation', 'sk5.title': 'IT & Automation',
+        'sk6.label': 'Leadership', 'sk6.title': 'Management & Leadership',
+        'ach.label': 'Track Record', 'ach.title': 'Key Achievements',
+        'ach1.title': 'Fast-Track Promotion to AV Team Lead',
+        'ach1.desc': 'Promoted to lead the technical department in recognition of consistent performance and expertise managing mission-critical AV infrastructure. Overseeing workflows and team coordination for large-capacity venues.',
+        'ach2.title': 'World-Scale Broadcast Operations — 2023',
+        'ach2.desc': 'Critical role in AV infrastructure for a global event with dozens of international media networks. Managed complex signal routing and ensured 100% broadcast uptime under extreme pressure.',
+        'ach3.title': '6 Years of Mission-Critical Reliability',
+        'ach3.desc': 'Maintained high-availability broadcast systems at Shrine of Fatima, supporting television services and webstreaming to global audiences with no critical failures during live productions.',
+        'ach4.title': 'Gulbenkian Orchestra — Premium Production',
+        'ach4.desc': '3+ years of acoustic reinforcement and live production for the Gulbenkian Orchestra and international performers, including multi-camera and webstreaming setups for high-profile international conferences.',
+        'edu.label': 'Academic Background', 'edu.title': 'Education',
+        'edu1.degree': 'Postgraduate Degree in Audiovisual & Multimedia Communication',
+        'edu1.desc': 'AV Project Management, Television Systems, and Visual Cultures.',
+        'edu2.degree': "Bachelor's Degree in Sound and Image",
+        'edu2.desc': 'Audio and Video Technologies, Digital Labs.',
+        'contact.headline': "Let's work<br/>together.",
+        'contact.sub': 'Available for AV engineering roles, system design, and broadcast infrastructure projects. Based in Lisbon, open to hybrid opportunities.',
+        'form.name': 'Your Name', 'form.nameph': 'e.g. Ana Silva',
+        'form.email': 'Your Email', 'form.msg': 'Message',
+        'form.msgph': 'Tell me about the role or project...', 'form.btn': 'Send Message',
+        'form.sent': "Message sent — I'll be in touch shortly.",
+      },
+      pt: {
+        'nav.experience': 'Experiência', 'nav.events': 'Eventos', 'nav.skills': 'Competências',
+        'nav.education': 'Formação', 'nav.contact': 'Contacto',
+        'hero.eyebrow': 'Engenheiro de Sistemas AV & Team Lead',
+        'hero.h1': 'Infraestruturas AV<br/>fiáveis à escala<br/>que for necessária.',
+        'hero.desc': 'Mais de 10 anos de experiência em sistemas de broadcast, produção de eventos ao vivo e redes AV. Especialista em Dante, BLU-Link e infraestruturas críticas para audiências globais. Baseado em Lisboa, Portugal.',
+        'hero.cta1': 'Ver Experiência', 'hero.cta2': 'Entrar em Contacto',
+        'card.role': 'AV Team Lead · Santuário de Fátima', 'card.location': 'Localização',
+        'card.education': 'Formação', 'card.email': 'Email', 'card.website': 'Website',
+        'card.avail': 'Aberto a oportunidades',
+        'exp.label': 'Carreira', 'exp.title': 'Experiência Profissional',
+        'exp1.period': 'Jun 2025 — Presente', 'exp1.company': 'Santuário de Fátima',
+        'exp1.tag': 'Atual', 'exp1.role': 'AV Team Lead',
+        'exp1.b1': 'Liderança da equipa técnica com supervisão de operações de áudio, vídeo e multimédia em eventos de escala mundial',
+        'exp1.b2': 'Gestão de workflows técnicos, escalonamento de equipa e disponibilidade de infraestrutura crítica durante transmissões ao vivo de alta pressão',
+        'exp1.b3': 'Supervisão da manutenção e gestão do ciclo de vida dos ativos AV do venue',
+        'exp2.role': 'Técnico AV & Multimédia',
+        'exp2.b1': 'Configuração e manutenção de redes AV complexas com protocolos Dante e BLU-Link sobre Fibra Ótica',
+        'exp2.b2': 'Operação de mistura de áudio e vídeo para serviços televisivos, webstreaming e retornos auxiliares de vídeo',
+        'exp2.b3': 'Produção de conteúdo audiovisual promocional para redes sociais e gestão do arquivo de media da organização',
+        'exp3.role': 'Técnico de Broadcast',
+        'exp3.b1': 'Supervisão de sistemas televisivos garantindo estabilidade de sinal 24/7 e resolução técnica rápida',
+        'exp3.b2': 'Integração de fluxos de áudio, vídeo e iluminação em ambientes profissionais de estúdio de broadcast',
+        'exp3.b3': 'Formação técnica a equipas sobre a correta operação de equipamentos de broadcast',
+        'exp4.role': 'Técnico de Áudio',
+        'exp4.b1': 'Gestão de reforço acústico para a Orquestra Gulbenkian e artistas internacionais, garantindo qualidade de áudio premium',
+        'exp4.b2': 'Suporte técnico ao vivo em conferências internacionais de alto perfil, incluindo webstreaming e configurações multicâmara',
+        'exp4.b3': 'Produção e pós-produção de gravações audiovisuais para arquivos institucionais e media promocional',
+        'events.label': 'Portfólio', 'events.title': 'Eventos de Destaque',
+        'filter.all': 'Todos', 'filter.broadcast': 'Broadcast & Eventos ao Vivo',
+        'filter.corporate': 'Corporate & Conferências', 'filter.exhibition': 'Exposições',
+        'cat.broadcast': 'Broadcast & Eventos ao Vivo', 'cat.corporate': 'Corporate & Conferências',
+        'cat.exhibition': 'Exposições',
+        'skills.label': 'Especialização', 'skills.title': 'Competências Técnicas',
+        'sk1.label': 'Redes', 'sk1.title': 'Redes AV & Infraestrutura',
+        'sk2.label': 'Hardware', 'sk2.title': 'Sistemas de Broadcast & Hardware',
+        'sk3.label': 'Ferramentas Enterprise', 'sk3.title': 'Colaboração & Enterprise',
+        'sk4.label': 'Pós-Produção', 'sk4.title': 'Engenharia de Media',
+        'sk5.label': 'TI & Automação', 'sk5.title': 'TI & Automação',
+        'sk6.label': 'Liderança', 'sk6.title': 'Gestão & Liderança',
+        'ach.label': 'Historial', 'ach.title': 'Conquistas',
+        'ach1.title': 'Promoção Acelerada a AV Team Lead',
+        'ach1.desc': 'Promovido para liderar o departamento técnico em reconhecimento de desempenho consistente e expertise na gestão de infraestrutura AV crítica. Supervisiona workflows técnicos e coordenação de equipa em venues de grande capacidade.',
+        'ach2.title': 'Operações de Broadcast à Escala Mundial — 2023',
+        'ach2.desc': 'Papel crítico na infraestrutura AV e operações de broadcast de um evento global com dezenas de redes de media internacionais. Gestão de roteamento de sinal complexo com 100% de uptime de broadcast sob pressão extrema.',
+        'ach3.title': '6 Anos de Fiabilidade em Operações Críticas',
+        'ach3.desc': 'Manutenção de sistemas de broadcast de alta disponibilidade no Santuário de Fátima, suportando serviços televisivos e webstreaming para audiências globais sem falhas críticas em produções ao vivo.',
+        'ach4.title': 'Orquestra Gulbenkian — Produção Premium',
+        'ach4.desc': 'Mais de 3 anos de reforço acústico e produção ao vivo para a Orquestra Gulbenkian e intérpretes internacionais, incluindo configurações multicâmara e webstreaming para conferências internacionais de alto perfil.',
+        'edu.label': 'Formação Académica', 'edu.title': 'Educação',
+        'edu1.degree': 'Pós-Graduação em Comunicação Audiovisual e Multimédia',
+        'edu1.desc': 'Gestão de Projetos AV, Sistemas Televisivos e Culturas Visuais.',
+        'edu2.degree': 'Licenciatura em Som e Imagem',
+        'edu2.desc': 'Tecnologias de Áudio e Vídeo, Laboratórios Digitais.',
+        'contact.headline': 'Vamos trabalhar<br/>juntos.',
+        'contact.sub': 'Disponível para cargos de engenharia AV, design de sistemas e projetos de infraestrutura de broadcast. Baseado em Lisboa, aberto a oportunidades híbridas.',
+        'form.name': 'O seu Nome', 'form.nameph': 'ex. Ana Silva',
+        'form.email': 'O seu Email', 'form.msg': 'Mensagem',
+        'form.msgph': 'Conte-me sobre o cargo ou projeto...', 'form.btn': 'Enviar Mensagem',
+        'form.sent': 'Mensagem enviada — entrarei em contacto brevemente.',
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent === lang.toUpperCase()));
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const val = i18n[lang][key];
+        if (val) el.innerHTML = val;
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        const val = i18n[lang][key];
+        if (val) el.placeholder = val;
+      });
+      // Re-run filter to update category labels
+      filterEvents(document.querySelector('.filter-btn.active')?.dataset.filter || 'all');
+    }
+
+    // ── EVENTS FILTER ──
+    function filterEvents(cat) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filter === cat));
+      document.querySelectorAll('.event-card').forEach(card => {
+        const show = cat === 'all' || card.dataset.category === cat;
+        card.setAttribute('data-hidden', !show);
+        card.style.display = show ? '' : 'none';
+      });
+    }
+
+    // ── SCROLL REVEAL ──
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('visible'), i * 70);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.06 });
+
+    document.querySelectorAll('.exp-item, .skill-group, .ach-card, .edu-item, .event-card')
+      .forEach(el => io.observe(el));
+
+    // ── ACTIVE NAV ──
+    const sections = document.querySelectorAll('section[id]');
+    const links = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+    window.addEventListener('scroll', () => {
+      let id = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) id = s.id; });
+      links.forEach(a => { a.style.color = a.getAttribute('href') === '#' + id ? 'var(--ink)' : ''; });
+    }, { passive: true });
+
+    // ── FORM ──
+    function handleSubmit(btn) {
+      btn.textContent = currentLang === 'pt' ? 'A enviar…' : 'Sending…';
+      btn.disabled = true;
+      setTimeout(() => {
+        document.getElementById('form-msg').style.display = 'block';
+        btn.textContent = i18n[currentLang]['form.btn'];
+        btn.disabled = false;
+      }, 900);
+    }
+  </script>
+</body>
+</html>
