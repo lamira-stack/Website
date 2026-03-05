@@ -30,7 +30,7 @@
         body.lang-en .pt { display: none !important; }
         body.lang-pt .en { display: none !important; }
 
-        /* Navegação Refinada */
+        /* Navegação */
         nav { 
             position: fixed; top: 0; width: 100%; 
             background: rgba(10, 10, 10, 0.8); 
@@ -56,16 +56,17 @@
 
         .container { max-width: 1000px; margin: 0 auto; padding: 120px 40px 60px; }
 
-        /* Hero Section - Estilo Minimalista */
         header { margin-bottom: 80px; border-left: 3px solid var(--accent-color); padding-left: 30px; }
         h1 { font-size: 3.5rem; font-weight: 800; letter-spacing: -2px; line-height: 1; margin-bottom: 15px; }
+        
+        /* SUBTÍTULO CORRIGIDO */
         .title-role { 
-            font-family: 'JetBrains+Mono', monospace; color: var(--accent-color); 
+            font-family: 'JetBrains Mono', monospace; color: var(--accent-color); 
             font-size: 1rem; font-weight: 500; display: block; margin-bottom: 25px; 
         }
+        
         .hero-description { font-size: 1.25rem; color: var(--text-secondary); max-width: 700px; font-weight: 300; }
 
-        /* Secções com Grelha Estilo Dashboard */
         section { margin-bottom: 80px; }
         .section-header { 
             display: flex; align-items: center; margin-bottom: 40px; 
@@ -74,7 +75,7 @@
         }
         .section-header::after { content: ""; height: 1px; flex-grow: 1; background: var(--border-color); }
 
-        /* Experiência Profissional */
+        /* Experiência */
         .exp-card { 
             background: var(--surface-color); padding: 40px; 
             border-radius: 12px; border: 1px solid var(--border-color);
@@ -84,31 +85,32 @@
         .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
         .exp-title h3 { font-size: 1.4rem; color: #fff; }
         .exp-title p { color: var(--accent-color); font-weight: 600; font-size: 0.9rem; }
-        .exp-date { font-family: 'JetBrains+Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); }
+        .exp-date { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary); }
         
         .bullets { list-style: none; margin-top: 20px; }
         .bullets li { 
             color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 12px; 
             padding-left: 20px; position: relative; 
         }
-        .bullets li::before { 
-            content: "→"; position: absolute; left: 0; color: var(--accent-color); 
-        }
+        .bullets li::before { content: "→"; position: absolute; left: 0; color: var(--accent-color); }
 
-        /* Skills Grid */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        /* COMPETÊNCIAS - NOVO DESIGN */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .skill-item { 
-            background: var(--surface-color); padding: 25px; 
-            border-radius: 8px; border: 1px solid var(--border-color);
+            background: var(--surface-color); padding: 30px; 
+            border-radius: 12px; border: 1px solid var(--border-color);
+            display: flex; flex-direction: column; gap: 15px;
         }
-        .skill-item h4 { margin-bottom: 15px; font-size: 0.9rem; color: var(--accent-color); text-transform: uppercase; }
-        .tag-group { display: flex; flex-wrap: wrap; gap: 8px; }
-        .tag { 
-            background: #1e293b; color: #94a3b8; padding: 4px 10px; 
-            border-radius: 4px; font-size: 0.75rem; font-weight: 500; 
+        .skill-item h4 { 
+            font-size: 0.85rem; color: var(--accent-color); 
+            text-transform: uppercase; letter-spacing: 1px;
+            border-bottom: 1px solid #262626; padding-bottom: 10px;
         }
+        .skill-list { list-style: none; }
+        .skill-list li { font-size: 0.95rem; color: var(--text-primary); margin-bottom: 8px; display: flex; justify-content: space-between; }
+        .skill-list li span { color: var(--text-secondary); font-size: 0.8rem; }
 
-        /* CTA para Galeria */
+        /* Galeria CTA */
         .gallery-cta { 
             background: linear-gradient(90deg, #1d4ed8 0%, #1e40af 100%); 
             padding: 50px; border-radius: 12px; text-align: center; margin-top: 40px;
@@ -121,12 +123,6 @@
         .btn-white:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
 
         footer { text-align: center; padding: 60px; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.8rem; }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            nav { padding: 15px 20px; }
-            .exp-header { flex-direction: column; gap: 5px; }
-        }
     </style>
 </head>
 <body class="lang-pt">
@@ -142,101 +138,8 @@
 
     <div class="container">
         <header>
-            <span class="title-role">AV Systems Engineer // Team Lead</span>
+            <span class="title-role en">AV Systems Engineer // Team Lead</span>
+            <span class="title-role pt">Engenheiro de Sistemas AV // Team Lead</span>
+            
             <h1>José Rodrigues Mina</h1>
             <p class="hero-description en">Specialized in mission-critical AV infrastructure, AoIP network design, and live broadcast synchronization.</p>
-            <p class="hero-description pt">Especialista em infraestruturas AV críticas, desenho de redes AoIP e sincronização de broadcast em direto.</p>
-        </header>
-
-        <section id="experience">
-            <div class="section-header">
-                <span class="en">Experience</span><span class="pt">Experiência</span>
-            </div>
-
-            <div class="exp-card">
-                <div class="exp-header">
-                    <div class="exp-title">
-                        <h3 class="en">AV Team Lead</h3>
-                        <h3 class="pt">Líder de Equipa AV</h3>
-                        <p>Santuário de Fátima</p>
-                    </div>
-                    <span class="exp-date">2025 — PRESENT</span>
-                </div>
-                <ul class="bullets">
-                    <li class="en">Strategic coordination of technical teams for global live broadcasting (TV & Web).</li>
-                    <li class="pt">Coordenação estratégica de equipas técnicas para transmissões globais (TV e Web).</li>
-                    <li class="en">Advanced AoIP network management ensuring 99.9% signal uptime.</li>
-                    <li class="pt">Gestão avançada de redes AoIP garantindo 99.9% de uptime de sinal.</li>
-                    <li class="en">Technical lead for high-profile international delegation visits.</li>
-                    <li class="pt">Liderança técnica em visitas de delegações internacionais de alto perfil.</li>
-                </ul>
-            </div>
-
-            <div class="exp-card">
-                <div class="exp-header">
-                    <div class="exp-title">
-                        <h3 class="en">AV & Multimedia Technician</h3>
-                        <h3 class="pt">Técnico de AV e Multimédia</h3>
-                        <p>Santuário de Fátima</p>
-                    </div>
-                    <span class="exp-date">2019 — 2025</span>
-                </div>
-                <ul class="bullets">
-                    <li class="en">Implementation of large-scale acoustic reinforcement systems for outdoors.</li>
-                    <li class="pt">Implementação de sistemas de reforço acústico de larga escala em recintos exteriores.</li>
-                    <li class="en">Fiber optic infrastructure maintenance for multi-site signal distribution.</li>
-                    <li class="pt">Manutenção de infraestrutura de fibra ótica para distribuição de sinal multi-site.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="skills">
-            <div class="section-header">
-                <span class="en">Core Competencies</span><span class="pt">Competências Core</span>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <h4 class="en">Signal Distribution</h4><h4 class="pt">Distribuição de Sinal</h4>
-                    <div class="tag-group">
-                        <span class="tag">Dante (L3)</span><span class="tag">AoIP</span><span class="tag">SDI/NDI</span><span class="tag">MADI</span>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <h4 class="en">Control & IT</h4><h4 class="pt">Controlo e TI</h4>
-                    <div class="tag-group">
-                        <span class="tag">Linux</span><span class="tag">Python</span><span class="tag">Networking</span><span class="tag">Bash</span>
-                    </div>
-                </div>
-                <div class="skill-item">
-                    <h4 class="en">Hardware</h4><h4 class="pt">Hardware</h4>
-                    <div class="tag-group">
-                        <span class="tag">Yamaha/CL/QL</span><span class="tag">Blackmagic</span><span class="tag">Clear-Com</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="gallery-cta">
-            <div class="gallery-cta">
-                <h2 class="en">Technical Fieldwork Portfolio</h2>
-                <h2 class="pt">Portefólio Técnico de Campo</h2>
-                <p class="en" style="color: #bfdbfe; margin-top: 10px;">Visual documentation of large-scale acoustic setups and events.</p>
-                <p class="pt" style="color: #bfdbfe; margin-top: 10px;">Documentação visual de montagens acústicas e eventos de larga escala.</p>
-                <a href="eventos.html" class="btn-white en">Explore Gallery</a>
-                <a href="eventos.html" class="btn-white pt">Explorar Galeria</a>
-            </div>
-        </section>
-
-        <footer>
-            <p>&copy; 2026 José Rodrigues Mina | AV Systems Engineering</p>
-        </footer>
-    </div>
-
-    <script>
-        function toggleLanguage() {
-            document.body.classList.toggle('lang-en');
-            document.body.classList.toggle('lang-pt');
-        }
-    </script>
-</body>
-</html>
