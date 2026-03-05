@@ -3,283 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AV Systems Engineer | Portfolio</title>
-    
+    <title>José Rodrigues Mina | AV Systems Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
     <style>
-        :root {
-            --bg-color: #0d0d0d;
-            --surface-color: #1a1a1a;
-            --surface-hover: #242424;
-            --text-primary: #f2f2f2;
-            --text-secondary: #a0a0a0;
-            --accent-color: #007acc;
-            --accent-hover: #005bb5;
-            --border-color: #333333;
-        }
-
+        :root { --bg-color: #0d0d0d; --surface-color: #1a1a1a; --text-primary: #f2f2f2; --text-secondary: #a0a0a0; --accent-color: #007acc; --border-color: #333333; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-color); color: var(--text-primary); line-height: 1.6; }
+        
         /* Lógica de Tradução */
         body.lang-en .pt { display: none !important; }
         body.lang-pt .en { display: none !important; }
 
-        .lang-toggle {
-            position: fixed;
-            top: 25px;
-            right: 25px;
-            background: var(--surface-color);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            padding: 10px 18px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
+        /* Navegação */
+        nav { position: sticky; top: 0; background: rgba(13, 13, 13, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); z-index: 1000; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-links a { color: var(--text-primary); text-decoration: none; margin-right: 25px; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent-color); }
+        
+        .lang-toggle { background: var(--surface-color); color: #fff; border: 1px solid var(--border-color); padding: 8px 15px; border-radius: 20px; cursor: pointer; font-weight: 600; }
 
-        .lang-toggle:hover {
-            border-color: var(--accent-color);
-            background: var(--surface-hover);
-            transform: scale(1.05);
-        }
+        .container { max-width: 900px; margin: 0 auto; padding: 60px 30px; }
+        header { margin-bottom: 60px; }
+        h1 { font-size: 3rem; margin-bottom: 10px; }
+        .title-role { color: var(--accent-color); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; display: block; margin-bottom: 20px; }
+        
+        section { margin-bottom: 60px; }
+        .section-title { font-size: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin-bottom: 30px; text-transform: uppercase; }
 
-        .container { max-width: 900px; margin: 0 auto; padding: 80px 30px; }
+        .card { background: var(--surface-color); padding: 30px; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 20px; }
+        .btn { display: inline-block; background: var(--accent-color); color: #fff; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: 600; margin-top: 20px; transition: 0.3s; }
+        .btn:hover { background: #005bb5; transform: translateY(-2px); }
 
-        header { margin-bottom: 80px; animation: fadeIn 1s ease-out; }
-        h1 { font-size: 3rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 5px; }
-        .title-role { font-size: 1.1rem; font-weight: 600; color: var(--accent-color); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; display: block; }
-        .hero-description { font-size: 1.2rem; color: var(--text-secondary); max-width: 650px; margin-bottom: 35px; font-weight: 300; }
+        .timeline-item { border-left: 2px solid var(--border-color); padding-left: 20px; margin-bottom: 30px; }
+        .timeline-bullets { list-style: none; margin-top: 10px; color: var(--text-secondary); font-size: 0.95rem; }
+        .timeline-bullets li { margin-bottom: 5px; }
+        .timeline-bullets li::before { content: "▹ "; color: var(--accent-color); }
 
-        .btn {
-            display: inline-block; background-color: var(--accent-color); color: #ffffff;
-            padding: 14px 32px; border-radius: 6px; text-decoration: none; font-weight: 600;
-            transition: all 0.3s ease; border: none; cursor: pointer;
-        }
-        .btn:hover { background-color: var(--accent-hover); transform: translateY(-2px); }
-
-        section { margin-bottom: 70px; }
-        .section-title { font-size: 1.5rem; font-weight: 600; color: #ffffff; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* Grelha Projetos Chave */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .card { background-color: var(--surface-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 30px; transition: all 0.3s ease; }
-        .card:hover { border-color: var(--accent-color); transform: translateY(-5px); background-color: var(--surface-hover); }
-        .card h3 { font-size: 1.25rem; margin-bottom: 10px; color: #ffffff; }
-        .card .event-date { font-size: 0.85rem; color: var(--accent-color); font-weight: 600; margin-bottom: 15px; display: block; }
-
-        /* Grelha Galeria de Eventos */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .gallery-item { position: relative; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.3); aspect-ratio: 4/3; background-color: var(--surface-hover); }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; display: block; }
-        .gallery-item:hover img { transform: scale(1.08); }
-        .gallery-caption { position: absolute; bottom: 0; left: 0; width: 100%; background: linear-gradient(transparent, rgba(0,0,0,0.9)); padding: 25px 15px 12px; color: #fff; font-size: 0.95rem; font-weight: 600; text-align: left; }
-
-        /* Skills */
-        .skill-category { margin-bottom: 25px; }
-        .skill-category h4 { color: var(--text-primary); margin-bottom: 12px; font-size: 1rem; }
-        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
-        .tag { background-color: var(--surface-color); color: var(--text-secondary); border: 1px solid var(--border-color); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
-
-        /* Experiência Melhorada */
-        .timeline-item { margin-bottom: 35px; padding-left: 20px; border-left: 2px solid var(--border-color); }
-        .timeline-item h4 { font-size: 1.2rem; color: #ffffff; margin-bottom: 5px; }
-        .timeline-item .meta { margin-bottom: 12px; }
-        .timeline-item .company { color: var(--accent-color); font-weight: 600; font-size: 0.95rem; }
-        .timeline-item .date { color: var(--text-secondary); font-size: 0.85rem; margin-left: 10px; }
-        .timeline-bullets { list-style-type: none; }
-        .timeline-bullets li { position: relative; padding-left: 15px; margin-bottom: 8px; font-size: 0.95rem; color: var(--text-secondary); }
-        .timeline-bullets li::before { content: "▹"; position: absolute; left: 0; color: var(--accent-color); font-weight: bold; }
-
-        footer { margin-top: 100px; padding: 40px 0; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-secondary); font-size: 0.9rem; }
-        .social-links a { color: var(--text-secondary); text-decoration: none; margin: 0 10px; transition: color 0.3s; }
-        .social-links a:hover { color: var(--accent-color); }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 600px) { h1 { font-size: 2.2rem; } .container { padding: 60px 20px; } }
+        footer { text-align: center; padding: 40px; border-top: 1px solid var(--border-color); color: var(--text-secondary); }
     </style>
 </head>
 <body class="lang-pt">
 
-    <button class="lang-toggle" onclick="toggleLanguage()">
-        <span class="en">PT / <strong>EN</strong></span>
-        <span class="pt">EN / <strong>PT</strong></span>
-    </button>
+    <nav>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="eventos.html" class="en">Portfolio</a>
+            <a href="eventos.html" class="pt">Portefólio</a>
+        </div>
+        <button class="lang-toggle" onclick="toggleLanguage()">EN / PT</button>
+    </nav>
 
     <div class="container">
         <header>
-            <h1 class="en">José Rodrigues Mina</h1>
-            <h1 class="pt">José Rodrigues Mina</h1>
-            <span class="title-role en">AV Systems Engineer | Team Lead</span>
-            <span class="title-role pt">Engenheiro de Sistemas AV | Team Lead</span>
-            
-            <p class="hero-description en">
-                Expert in designing and managing mission-critical AV infrastructure, specialized in Dante, AoIP networking, and live broadcast workflows.
-            </p>
-            <p class="hero-description pt">
-                Especialista na gestão de infraestruturas AV críticas, focado em redes Dante, AoIP e fluxos de trabalho broadcast em direto.
-            </p>
-
-            <a href="mailto:rodriguesminajose@gmail.com" class="btn en">Contact Me</a>
-            <a href="mailto:rodriguesminajose@gmail.com" class="btn pt">Contactar</a>
+            <h1>José Rodrigues Mina</h1>
+            <span class="title-role">AV Systems Engineer | Team Lead</span>
+            <p class="hero-description en">Expert in mission-critical AV infrastructure, specialized in Dante, AoIP networking, and live broadcast.</p>
+            <p class="hero-description pt">Especialista em infraestruturas AV críticas, focado em redes Dante, AoIP e broadcast em direto.</p>
         </header>
 
-        <main>
-            <section id="portfolio">
-                <h2 class="section-title en">Key Projects</h2>
-                <h2 class="section-title pt">Projetos Chave</h2>
-                <div class="grid">
-                    <div class="card">
-                        <h3 class="en">World Youth Day 2023</h3>
-                        <h3 class="pt">Jornada Mundial da Juventude 2023</h3>
-                        <span class="event-date">Lisbon / Fátima</span>
-                        <p class="en">Managed AV signal routing and fiber optic infrastructure for one of the world's largest religious events.</p>
-                        <p class="pt">Gestão de routing de sinal AV e infraestrutura de fibra ótica para um dos maiores eventos globais.</p>
-                    </div>
-                    <div class="card">
-                        <h3 class="en">Broadcast Operations & IP Audio</h3>
-                        <h3 class="pt">Operações de Broadcast e Áudio IP</h3>
-                        <span class="event-date">Santuário de Fátima</span>
-                        <p class="en">Coordination of high-availability AV infrastructure for live TV and streaming, integrating complex AoIP networks.</p>
-                        <p class="pt">Coordenação de infraestrutura AV de alta disponibilidade para TV e streaming em direto, integrando redes AoIP complexas.</p>
-                    </div>
-                </div>
-            </section>
+        <section id="experience">
+            <h2 class="section-title en">Experience</h2>
+            <h2 class="section-title pt">Experiência</h2>
+            
+            <div class="timeline-item">
+                <h4 class="en">AV Team Lead</h4>
+                <h4 class="pt">Líder de Equipa AV</h4>
+                <p style="color:var(--accent-color)">Santuário de Fátima | 2025 — Present</p>
+                <ul class="timeline-bullets">
+                    <li class="en">Managing technical teams for daily live global broadcasts.</li>
+                    <li class="pt">Gestão de equipas técnicas para emissões globais diárias.</li>
+                    <li class="en">AoIP network design and troubleshooting.</li>
+                    <li class="pt">Desenho e manutenção de redes AoIP.</li>
+                </ul>
+            </div>
+        </section>
 
-            <section id="experience">
-                <h2 class="section-title en">Professional Experience</h2>
-                <h2 class="section-title pt">Experiência Profissional</h2>
-                
-                <div class="timeline-item">
-                    <h4 class="en">AV Team Lead</h4>
-                    <h4 class="pt">Líder de Equipa AV</h4>
-                    <div class="meta">
-                        <span class="company">Santuário de Fátima</span> <span class="date">2025 — Present / Presente</span>
-                    </div>
-                    <ul class="timeline-bullets">
-                        <li class="en">Coordination of the resident technical team for daily live broadcasts and large-scale events.</li>
-                        <li class="pt">Coordenação da equipa técnica residente para emissões diárias em direto e eventos de grande escala.</li>
-                        
-                        <li class="en">Design, implementation, and management of complex AoIP routing architectures.</li>
-                        <li class="pt">Desenho, implementação e gestão de arquiteturas complexas de routing em AoIP.</li>
-                        
-                        <li class="en">Real-time critical problem-solving during 24/7 continuous operations.</li>
-                        <li class="pt">Resolução de problemas críticos em tempo real durante operações contínuas 24/7.</li>
-                    </ul>
-                </div>
-                
-                <div class="timeline-item">
-                    <h4 class="en">AV & Multimedia Technician</h4>
-                    <h4 class="pt">Técnico de AV e Multimédia</h4>
-                    <div class="meta">
-                        <span class="company">Santuário de Fátima</span> <span class="date">2019 — 2025</span>
-                    </div>
-                    <ul class="timeline-bullets">
-                        <li class="en">Operation of audio, video, and lighting consoles for live corporate and religious events.</li>
-                        <li class="pt">Operação de mesas de mistura de áudio, vídeo e iluminação para eventos ao vivo.</li>
-                        
-                        <li class="en">Setup and tuning of acoustic reinforcement systems in challenging large-scale environments.</li>
-                        <li class="pt">Configuração e afinação de sistemas de reforço acústico em recintos de grande escala.</li>
-                        
-                        <li class="en">Technical support for external broadcast reporting teams.</li>
-                        <li class="pt">Apoio técnico a equipas externas de reportagem e broadcast.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section id="gallery">
-                <h2 class="section-title en">Event Gallery & Acoustic Reinforcement</h2>
-                <h2 class="section-title pt">Galeria de Eventos e Reforço Acústico</h2>
-                <div class="gallery-grid">
-                    
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=600&q=80" alt="Evento 1">
-                        <div class="gallery-caption">
-                            <span class="en">Main Stage Audio Mixing</span>
-                            <span class="pt">Mistura de Áudio - Palco Principal</span>
-                        </div>
-                    </div>
-
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1516280440502-04ce19451943?w=600&q=80" alt="Evento 2">
-                        <div class="gallery-caption">
-                            <span class="en">Live Broadcast Control Room</span>
-                            <span class="pt">Regie de Transmissão em Direto</span>
-                        </div>
-                    </div>
-
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?w=600&q=80" alt="Evento 3">
-                        <div class="gallery-caption">
-                            <span class="en">Acoustic Reinforcement Setup</span>
-                            <span class="pt">Montagem de Reforço Acústico</span>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <section id="skills">
-                <h2 class="section-title en">Technical Stack</h2>
-                <h2 class="section-title pt">Competências</h2>
-                <div class="skill-category">
-                    <h4 class="en">Audio & Networking</h4>
-                    <h4 class="pt">Áudio e Redes</h4>
-                    <div class="tags">
-                        <span class="tag">Dante (Level 3)</span>
-                        <span class="tag">AoIP</span>
-                        <span class="tag">AV-over-IP</span>
-                        <span class="tag">Optical Fiber</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h4 class="en">Systems & IT</h4>
-                    <h4 class="pt">Sistemas e TI</h4>
-                    <div class="tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Linux</span>
-                        <span class="tag">FFmpeg</span>
-                        <span class="tag">Bash</span>
-                    </div>
-                </div>
-            </section>
-        </main>
+        <section id="cta">
+            <div class="card" style="text-align: center;">
+                <h3 class="en">Visual Portfolio</h3>
+                <h3 class="pt">Portefólio Visual</h3>
+                <p class="en">Check out my gallery of events and acoustic reinforcement projects.</p>
+                <p class="pt">Explora a minha galeria de eventos e projetos de reforço acústico.</p>
+                <a href="eventos.html" class="btn en">View Events Gallery</a>
+                <a href="eventos.html" class="btn pt">Ver Galeria de Eventos</a>
+            </div>
+        </section>
 
         <footer>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/joserodriguesmina" target="_blank">LinkedIn</a>
-                <a href="mailto:rodriguesminajose@gmail.com">Email</a>
-                <a href="tel:+351969725793">Phone</a>
-            </div>
             <p>&copy; 2026 José Rodrigues Mina</p>
         </footer>
     </div>
 
     <script>
         function toggleLanguage() {
-            const body = document.body;
-            if (body.classList.contains('lang-pt')) {
-                body.classList.remove('lang-pt');
-                body.classList.add('lang-en');
-            } else {
-                body.classList.remove('lang-en');
-                body.classList.add('lang-pt');
-            }
+            document.body.classList.toggle('lang-en');
+            document.body.classList.toggle('lang-pt');
         }
     </script>
 </body>
