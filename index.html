@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>José Rodrigues Mina | AV Systems Engineer</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #0d0d0d;
+            --surface-color: #1a1a1a;
+            --surface-hover: #242424;
+            --text-primary: #f2f2f2;
+            --text-secondary: #a0a0a0;
+            --accent-color: #007acc;
+            --accent-hover: #005bb5;
+            --border-color: #333333;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        /* Sistema de Idiomas */
+        body.lang-pt .en { display: none; }
+        body.lang-en .pt { display: none; }
+
+        .lang-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .lang-toggle:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-color);
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 80px 30px; }
+
+        header { margin-bottom: 80px; animation: fadeIn 1s ease-out; }
+        h1 { font-size: 3rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 5px; }
+        .title-role { font-size: 1.1rem; font-weight: 600; color: var(--accent-color); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; display: block; }
+        .hero-description { font-size: 1.2rem; color: var(--text-secondary); max-width: 650px; margin-bottom: 35px; font-weight: 300; }
+
+        .btn {
+            display: inline-block; background-color: var(--accent-color); color: #ffffff;
+            padding: 14px 32px; border-radius: 6px; text-decoration: none; font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease; border: none; cursor: pointer;
+        }
+        .btn:hover { background-color: var(--accent-hover); transform: translateY(-2px); }
+
+        section { margin-bottom: 70px; }
+        .section-title { font-size: 1.5rem; font-weight: 600; color: #ffffff; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 1px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+
+        .card { background-color: var(--surface-color); border: 1px solid var(--border-color); border-radius: 8px; padding: 30px; transition: all 0.3s ease; }
+        .card:hover { background-color: var(--surface-hover); border-color: var(--accent-color); transform: translateY(-5px); }
+        .card h3 { font-size: 1.25rem; margin-bottom: 10px; color: #ffffff; }
+        .card .event-date { font-size: 0.85rem; color: var(--accent-color); font-weight: 600; margin-bottom: 15px; display: block; }
+        .card p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        .skill-category { margin-bottom: 25px; }
+        .skill-category h4 { color: var(--text-primary); margin-bottom: 12px; font-size: 1rem; font-weight: 600; }
+        .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tag { background-color: var(--surface-color); color: var(--text-secondary); border: 1px solid var(--border-color); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; transition: all 0.3s; }
+        .tag:hover { color: var(--accent-color); border-color: var(--accent-color); }
+
+        .timeline-item { margin-bottom: 25px; padding-left: 20px; border-left: 2px solid var(--border-color); }
+        .timeline-item h4 { font-size: 1.1rem; color: #ffffff; margin-bottom: 5px; }
+        .timeline-item .company { color: var(--accent-color); font-weight: 600; font-size: 0.95rem; }
+        .timeline-item .date { color: var(--text-secondary); font-size: 0.85rem; margin-left: 10px; }
+
+        footer { margin-top: 100px; padding-top: 30px; border-top: 1px solid var(--border-color); display: flex; flex-direction: column; align-items: center; gap: 15px; color: var(--text-secondary); font-size: 0.9rem; }
+        .social-links a { color: var(--text-secondary); text-decoration: none; margin: 0 10px; transition: color 0.3s ease; }
+        .social-links a:hover { color: var(--accent-color); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 600px) { h1 { font-size: 2.2rem; } .container { padding: 40px 20px; } .lang-toggle { top: 10px; right: 10px; } }
+    </style>
+</head>
+<body class="lang-en">
+
+    <button class="lang-toggle" onclick="toggleLanguage()">
+        <span class="en">PT / EN</span>
+        <span class="pt">EN / PT</span>
+    </button>
+
+    <div class="container">
+        <header>
+            <h1>José Rodrigues Mina</h1>
+            <span class="title-role en">AV Systems Engineer | Team Lead</span>
+            <span class="title-role pt">Engenheiro de Sistemas AV | Team Lead</span>
+            
+            <p class="hero-description en">
+                Expert in designing, deploying, and managing mission-critical audiovisual infrastructure. 
+                Specialized in Dante/BLU-Link networking over fiber optics and high-availability broadcast workflows for global-scale events.
+            </p>
+            <p class="hero-description pt">
+                Especialista na conceção, implementação e gestão de infraestruturas audiovisuais críticas. 
+                Especializado em redes Dante/BLU-Link sobre fibra ótica e fluxos de trabalho broadcast de alta disponibilidade para eventos de escala global.
+            </p>
+
+            <a href="mailto:rodriguesminajose@gmail.com" class="btn en">Get in Touch</a>
+            <a href="mailto:rodriguesminajose@gmail.com" class="btn pt">Contactar</a>
+        </header>
+
+        <main>
+            <section id="portfolio">
+                <h2 class="section-title en">Event Portfolio</h2>
+                <h2 class="section-title pt">Portefólio de Eventos</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3 class="en">World Youth Day / Papal Visit</h3>
+                        <h3 class="pt">Jornada Mundial da Juventude / Visita Papal</h3>
+                        <span class="event-date">2023 | Lisboa & Fátima</span>
+                        <p class="en">Managed critical signal routing and fiber optic redundancy for a high-profile international event with 1.5M+ attendees. Ensured 100% broadcast uptime for dozens of global media networks under extreme operational pressure.</p>
+                        <p class="pt">Gestão do encaminhamento crítico de sinais e redundância em fibra ótica para um evento internacional de alto perfil com mais de 1,5M de participantes. Garantia de 100% de tempo de atividade na transmissão para dezenas de redes de media globais sob extrema pressão operacional.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 class="en">Gulbenkian Orchestra Concerts</h3>
+                        <h3 class="pt">Concertos da Orquestra Gulbenkian</h3>
+                        <span class="event-date">2015 - 2018 | Fundação Calouste Gulbenkian</span>
+                        <p class="en">Provided live sound engineering, acoustic reinforcement, and technical production for international performers and symphonic orchestras, ensuring premium audio quality for diverse and demanding audiences.</p>
+                        <p class="pt">Engenharia de som ao vivo, reforço acústico e produção técnica para artistas internacionais e orquestras sinfónicas, garantindo uma qualidade de áudio premium para públicos exigentes.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="en">A Bola TV Special Broadcasts</h3>
+                        <h3 class="pt">Emissões Especiais "A Bola TV"</h3>
+                        <span class="event-date">2018 - 2019 | Estúdios A Bola TV</span>
+                        <p class="en">Supervised television systems and integrated complex audio, video, and lighting workflows into professional studio environments, ensuring 24/7 signal stability for continuous broadcasting.</p>
+                        <p class="pt">Supervisão de sistemas de televisão e integração de fluxos de trabalho complexos de áudio, vídeo e iluminação em ambientes de estúdio profissional, garantindo estabilidade de sinal 24/7.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills">
+                <h2 class="section-title en">Technical Stack</h2>
+                <h2 class="section-title pt">Competências Técnicas</h2>
+                
+                <div class="skill-category">
+                    <h4 class="en">Networking & Infrastructure</h4>
+                    <h4 class="pt">Redes e Infraestrutura</h4>
+                    <div class="tags">
+                        <span class="tag">Dante</span>
+                        <span class="tag">BLU-Link</span>
+                        <span class="tag">AV-over-IP</span>
+                        <span class="tag">Fiber Optics</span>
+                        <span class="tag">NDI / SDI</span>
+                        <span class="tag">Signal Flow Architecture</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4 class="en">Engineering, IT & Automation</h4>
+                    <h4 class="pt">Engenharia, TI e Automação</h4>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Linux</span>
+                        <span class="tag">FFmpeg</span>
+                        <span class="tag">REAPER</span>
+                        <span class="tag">DaVinci Resolve</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h4 class="en">Hardware & Enterprise Tools</h4>
+                    <h4 class="pt">Hardware e Ferramentas Corporativas</h4>
+                    <div class="tags">
+                        <span class="tag">Yamaha QL/CL</span>
+                        <span class="tag">Blackmagic ATEM</span>
+                        <span class="tag">Evertz VistaLINK</span>
+                        <span class="tag">Zoom (Advanced Events)</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="experience">
+                <h2 class="section-title en">Experience</h2>
+                <h2 class="section-title pt">Experiência Profissional</h2>
+                
+                <div class="timeline-item">
+                    <h4 class="en">AV Team Lead</h4>
+                    <h4 class="pt">Líder de Equipa AV</h4>
+                    <span class="company">Shrine of Fatima</span> <span class="date">06/2025 — Present</span>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4 class="en">AV & Multimedia Technician</h4>
+                    <h4 class="pt">Técnico de AV e Multimédia</h4>
+                    <span class="company">Shrine of Fatima</span> <span class="date">07/2019 — 06/2025</span>
+                </div>
+
+                <div class="timeline-item">
+                    <h4 class="en">Broadcast Technician</h4>
